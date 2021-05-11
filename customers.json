@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Saad Shabbir",
+        "phone": "0302-4730861",
+        "university": "COMSATS"
+    },
+    {
+        "id": 2,
+        "name": "Muaaz Shabbir",
+        "phone": "0303-4730861",
+        "university": "COMSATS"
+    },
+    {
+        "id": 3,
+        "name": "Ahmed Shabbir",
+        "phone": "0300-4730861",
+        "university": "COMSATS"
+    }
+]
