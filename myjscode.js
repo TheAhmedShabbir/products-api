@@ -1,70 +1,39 @@
-document.querySelector('.btn-customer').addEventListener('click', getCustomer)
-
-document.querySelector('.btn-customers').addEventListener('click', getCustomers)
+document.querySelector('.get-jokes').addEventListener('click', getJokes)
 
 
-// Get a Customer
-function getCustomer(){
+function getJokes(e){
+  const number = document.querySelector('input[type = "number"]').value
+
   const xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'customer.json', true)
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true)
 
   xhr.onload = function(){
     if(this.status == 200){
-      const customer = JSON.parse(this.responseText)
+      const response = JSON.parse(this.responseText)
 
-      const output = `
-        <ul>
-          <li>ID: ${customer.id}</li>
-          <li>Name: ${customer.name}</li>
-          <li>Phone: ${customer.phone}</li>
-          <li>University: ${customer.university}</li>
-        </ul>
-      `
-      document.querySelector('.output1').innerHTML = output
+      let jokes = ''
+
+      if(response.type === 'success'){
+        response.value.forEach(function(joke){
+          jokes += `<li>${joke.joke}</li>`
+        });
+      } else {
+        jokes += `
+          <h3>Something went Wrong</h3>
+        `
+      }
+
+      document.querySelector('.jokes').innerHTML = jokes
     }
   }
 
   xhr.onerror = function() {
-    document.querySelector('.output1').innerHTML = 
-      `<p>Request Error</p>`
+    document.querySelector('.jokes').innerHTML = 
+      `<h3>Request Error</h3>`
   }
 
   xhr.send()
-}
 
-
-// Get Customers
-function getCustomers(){
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('GET', 'customers.json', true)
-
-  xhr.onload = function(){
-    if(this.status == 200){
-      const customers = JSON.parse(this.responseText)
-
-      let output = ''
-
-      customers.forEach(function(users){
-        output += `
-        <ul>
-          <li>ID: ${users.id}</li>
-          <li>Name: ${users.name}</li>
-          <li>Phone: ${users.phone}</li>
-          <li>University: ${users.university}</li>
-        </ul>
-      `
-      });
-      
-      document.querySelector('.output2').innerHTML = output
-    }
-  }
-
-  xhr.onerror = function() {
-    document.querySelector('.output2').innerHTML = 
-      `<p>Request Error</p>`
-  }
-
-  xhr.send()
+  e.preventDefault()
 }

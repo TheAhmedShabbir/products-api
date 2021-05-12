@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>API</title>
+    <title>Chuck Norris Joke Generator</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <div class="container">
-      <button type="button" class="btn-customer btn btn-primary mt-3">Get a Customer</button>
-      <button type="button" class="btn-customers btn btn-secondary mt-3">Get Customers</button>
+      <h1 class="text-center mt-3">Chuck Norris Jokes</h1>
 
-      <div class="customer">
-        <h2 class="mt-5">Customer</h2>
-        <p class="output1"></p>
-      </div>
-      
-      <div class="customers">
-        <h2 class="mt-5">Customers</h2>
-        <p class="output2"></p>
-      </div>
-    
+      <form action="#">
+        <div>
+          <label for="number" class="mr-4 mt-5">Number of Jokes:</label>
+          <input type="number" id="number">
+        </div>
+        <div>
+          <button class="get-jokes btn btn-primary mt-3">Get Jokes</button>
+        </div>
+      </form>
+
+      <ul class="jokes mt-4"></ul>
+
     </div>  
 
     <script src="./myjscode.js"></script>
