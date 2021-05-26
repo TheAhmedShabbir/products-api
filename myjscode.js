@@ -1,39 +1,59 @@
-document.querySelector('.get-jokes').addEventListener('click', getJokes)
+document.querySelector('.btn1').addEventListener('click', getText)
 
+document.querySelector('.btn2').addEventListener('click', getJSON)
 
-function getJokes(e){
-  const number = document.querySelector('input[type = "number"]').value
+document.querySelector('.btn3').addEventListener('click', getAPI)
 
-  const xhr = new XMLHttpRequest();
+// Get text
+function getText(){
+  fetch('output.txt')
+    .then(function(res){
+      return res.text()
+  })
+    .then(function(data){
+      document.querySelector('.output').innerHTML = data
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+}
 
-  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true)
+// Get JSON Data
+function getJSON(){
+  fetch('posts.json')
+    .then(function(res){
+      return res.json()
+  })
+    .then(function(data){
+      let output = ''
 
-  xhr.onload = function(){
-    if(this.status == 200){
-      const response = JSON.parse(this.responseText)
+      data.forEach(function(post) {
+        output += `<li>${post.title}</li>`
+      });
 
-      let jokes = ''
+      document.querySelector('.output').innerHTML = output
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+}
 
-      if(response.type === 'success'){
-        response.value.forEach(function(joke){
-          jokes += `<li>${joke.joke}</li>`
-        });
-      } else {
-        jokes += `
-          <h3>Something went Wrong</h3>
-        `
-      }
+// Get API Data
+function getAPI(){
+  fetch('https://usman-recipes.herokuapp.com/api/products')
+    .then(function(res){
+      return res.json()
+  })
+    .then(function(data){
+      let output = ''
 
-      document.querySelector('.jokes').innerHTML = jokes
-    }
-  }
+      data.forEach(function(products) {
+        output += `<li>${products.name}</li>`
+      });
 
-  xhr.onerror = function() {
-    document.querySelector('.jokes').innerHTML = 
-      `<h3>Request Error</h3>`
-  }
-
-  xhr.send()
-
-  e.preventDefault()
+      document.querySelector('.output').innerHTML = output
+    })
+    .catch(function(err){
+      console.log(err)
+    })
 }
