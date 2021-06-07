@@ -1,18 +1,132 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Fetch/Promises/Async/Await</title>
+    <title>Products CRUD</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <div class="container">
+      <h2 class="text-center mt-3">Products</h2>
+      <div class="buttons my-4">
+        <div class="float-right">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal">
+            Create Product
+          </button>
+          <button type="button" class="refresh-btn btn btn-info">Refresh</button>
+        </div>
+      </div>
+      
+      </br>
+      
+      <!-- Modal for Create-->
+      <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input 
+                  type="text"
+                  class="form-control" 
+                  name="title" 
+                  id="title" 
+                  aria-describedby="titleHelp" 
+                  placeholder="Title of the Product"
+                />
+                <small id="titleHelp" class="form-text text-muted">Enter title of the Product</small>
+              </div>
+              <div class="form-group">
+                <label for="body">Body</label>
+                <input 
+                  type="text"
+                  class="form-control" 
+                  name="body" 
+                  id="body" 
+                  aria-describedby="bodyHelp" 
+                  placeholder="Product Details"
+                />
+                <small id="bodyHelp" class="form-text text-muted">Enter details of the Product</small>
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="create-btn btn btn-success">Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal for edit-->
+      <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              
+              <input type="hidden" id="update-id">
+
+              <div class="form-group">
+                <label for="edit-title">Update Title</label>
+                <input 
+                  type="text"
+                  class="form-control" 
+                  name="edit-title" 
+                  id="edit-title" 
+                  aria-describedby="edit-title-help" 
+                  placeholder="Title"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="edit-body">Update Body</label>
+                <input type="text"
+                  class="form-control" 
+                  name="edit-body" 
+                  id="edit-body" 
+                  aria-describedby="edit-body-help" 
+                  placeholder="Body"
+                />
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="save" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="products mt-5">
+
+      </div>
     
-    <script src="./http.js"></script>
-    <script src="./myjscode.js"></script>
+    </div>  
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./mycode.js"></script>
   </body>
 </html>
