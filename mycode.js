@@ -4,6 +4,9 @@ $(function(){
   $(".products").on("click",".btn-warning",editProduct)
   $(".products").on("click",".btn-danger",deleteProduct)
   $('.modal-footer').on("click","#save",saveButton)
+  $('.refresh-btn').click(function(){
+    location.reload()
+  })
 })
 
 function saveButton(){
