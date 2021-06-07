@@ -1,3 +1,4 @@
+//start function for Jquery
 $(function(){
   getProducts()
   $(".modal-footer").on("click",".create-btn",addProduct)
@@ -9,6 +10,35 @@ $(function(){
   })
 })
 
+//function to delete products
+function deleteProduct(){
+  let id = $(this).closest('.prod').attr('product-id')
+  $.ajax({
+    type: "DELETE",
+    url: `https://usman-recipes.herokuapp.com/api/products/${id}`,
+    success: function () {
+      getProducts()
+    }
+  });
+}
+
+//fucntion to edit products
+function editProduct(){
+  let id = $(this).closest('.prod').attr('product-id')
+
+  $.ajax({
+    type: "PUT",
+    url: `https://usman-recipes.herokuapp.com/api/products/${id}`,
+    success: function (response) {
+      $('#update-id').val(response._id)
+      $('#edit-title').val(response.name)
+      $('#edit-body').val(response.description)
+      $('#updateModal').modal("show")
+    }
+  });
+}
+
+// save button in edit modal
 function saveButton(){
   let id = $('#update-id').val()
   let name = $('#edit-title').val()
@@ -25,32 +55,7 @@ function saveButton(){
   });
 }
 
-function deleteProduct(){
-  let id = $(this).closest('.prod').attr('product-id')
-  $.ajax({
-    type: "DELETE",
-    url: `https://usman-recipes.herokuapp.com/api/products/${id}`,
-    success: function () {
-      getProducts()
-    }
-  });
-}
-
-function editProduct(){
-  let id = $(this).closest('.prod').attr('product-id')
-
-  $.ajax({
-    type: "PUT",
-    url: `https://usman-recipes.herokuapp.com/api/products/${id}`,
-    success: function (response) {
-      $('#update-id').val(response._id)
-      $('#edit-title').val(response.name)
-      $('#edit-body').val(response.description)
-      $('#updateModal').modal("show")
-    }
-  });
-}
-
+//function to add product
 function addProduct(){
   let name = $('#title').val();
   let description = $('#body').val();
@@ -67,6 +72,7 @@ function addProduct(){
   });
 }
 
+//function to get products
 function getProducts(){
   $.ajax({
     type: "GET",
